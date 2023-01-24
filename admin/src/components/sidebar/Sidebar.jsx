@@ -53,14 +53,14 @@ export default function Sidebar() {
                 Products
               </li>
             </Link>
-            <li className="sidebarListItem">
+            {/* <li className="sidebarListItem">
               <AttachMoney className="sidebarIcon" />
               Transactions
-            </li>
-            <li className="sidebarListItem">
+            </li> */}
+            {/* <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="sidebarMenu">
@@ -80,7 +80,7 @@ export default function Sidebar() {
             </li>
           </ul>
         </div>
-        <div className="sidebarMenu">
+        {/* <div className="sidebarMenu">
           <h3 className="sidebarTitle">Staff</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
@@ -96,7 +96,7 @@ export default function Sidebar() {
               Reports
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

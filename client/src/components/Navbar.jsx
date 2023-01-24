@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logingout } from "../redux/apiCalls";
 
 const Container = styled.div`
   height: 60px;
@@ -68,8 +70,18 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
+const Button = styled.button``
+
 const Navbar=()=>{
-  const quantity =useSelector(state=>state.cart.quantity)
+  const quantity =useSelector(state=>state.cart.quantity);
+  const { isFetching } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    logingout(dispatch);
+  };
+
     return(
         <Container>
             <Wrapper>
@@ -84,8 +96,6 @@ const Navbar=()=>{
                     <Logo>B2B Ecom</Logo>
                 </Center>
                 <Right>
-                    <MenuItem>Register</MenuItem>
-                    <MenuItem>Sign In</MenuItem>
                     <Link to="/cart">
                     <MenuItem>
                         <Badge badgeContent={quantity} color="primary">
@@ -93,6 +103,9 @@ const Navbar=()=>{
                         </Badge>
                     </MenuItem>
                     </Link>
+                    <Button onClick={handleClick} disabled={isFetching}>
+            LOGOUT
+          </Button>
                 </Right>
             </Wrapper>
         </Container>

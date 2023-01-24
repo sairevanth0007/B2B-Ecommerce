@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Form } from "react-router-dom";
+// import { Form } from "react-router-dom";
 import styled from "styled-components";
-import { popularProducts } from "../data";
+// import { popularProducts } from "../data";
 import Product from "./Product";
 import axios from "axios";
 
@@ -28,10 +28,10 @@ const Products= ({cat,filters,sort}) => {
     },[cat]);
 
     useEffect(()=>{
-        cat &&setFilteredProducts(
+        cat && setFilteredProducts(
             products.filter((item)=> Object.entries(filters).every(([key,value])=>item[key].inculdes(value)))
         )
-    },[products,cat,filters])
+    },[products,cat,filters]);
 
 
     useEffect(()=>{
@@ -47,7 +47,7 @@ const Products= ({cat,filters,sort}) => {
             [...prev].sort((a,b)=>b.price-a.price)
             );
         }
-    })
+    }, [sort]);
     return(
         <Contsiner>
             {cat ? filteredProducts.map((item)=>

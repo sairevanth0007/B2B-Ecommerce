@@ -18,7 +18,9 @@ const Success = () => {
           userId: currentUser._id,
           products: cart.products.map((item) => ({
             productId: item._id,
+            adminid: item.adminid,
             quantity: item.quantity,
+            address: data.billing_details.address,
           })),
           amount: cart.total,
           address: data.billing_details.address,

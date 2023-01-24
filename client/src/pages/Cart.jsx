@@ -8,7 +8,8 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import {useNavigate} from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../redux/cartRedux";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -164,6 +165,9 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
+  const { isFetching } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -184,6 +188,12 @@ const Cart = () => {
     stripeToken && makeRequest();
   }, [stripeToken, cart.total, navigate]);
 
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(clearCart(cart));
+  };
+
   return (
     <Container>
       <Navbar />
@@ -196,7 +206,7 @@ const Cart = () => {
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <TopButton type="filled" onClick={handleClick} disabled={isFetching}>Clear Cart</TopButton>
         </Top>
         <Bottom>
           <Info>

@@ -7,8 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getProducts } from "../../redux/apiCalls";
 
 export default function ProductList() {
+  const user= useSelector((state)=>state.user.currentUser)
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
+  const prod = useSelector((state) => state.product.products);
+  const products = prod.filter(p=>p.adminid===user._id)
 
   useEffect(() => {
     getProducts(dispatch);
