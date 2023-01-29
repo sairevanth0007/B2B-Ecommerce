@@ -1,4 +1,5 @@
 const Order = require("../models/Order");
+const AdminOrder= require("../models/AdminOrder")
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -14,6 +15,12 @@ router.post("/", verifyToken, async (req, res) => {
 
   try {
     const savedOrder = await newOrder.save();
+    newOrder.products.map(p=>{
+      const ado=new AdminOrder(p);
+      ado.userId=newOrder.userId;
+      // ado.orderid=savedOrder._id;
+      ado.save();
+    });
     res.status(200).json(savedOrder);
   } catch (err) {
     res.status(500).json(err);
@@ -58,9 +65,10 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
 
 // //GET ALL
 
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+// router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", verifyToken, async (req, res) => {
   try {
-    const orders = await Order.find();
+    const orders = await AdminOrder.find();
     res.status(200).json(orders);
   } catch (err) {
     res.status(500).json(err);

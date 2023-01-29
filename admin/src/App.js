@@ -8,6 +8,8 @@ import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
+import OrderList from "./pages/orderList/OrderList";
+import Order from "./pages/order/Order";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/Login"
 
@@ -41,6 +43,12 @@ function App() {
           </Route>
           <Route path="/product/:productId">
             <Product />
+          </Route>
+          <Route path="/orders">
+            <OrderList />
+          </Route>
+          <Route path="/order/:orderId">
+            <Order />
           </Route>
           <Route path="/newproduct">
             <NewProduct />

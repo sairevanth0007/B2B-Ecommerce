@@ -14,6 +14,11 @@ import {
   addProductStart,
   addProductSuccess,
 } from "./productRedux";
+import{
+  getOrderStart,
+  getOrderFailure,
+  getOrderSuccess
+} from "./orderRedux"
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -40,6 +45,16 @@ export const getProducts = async (dispatch) => {
     dispatch(getProductSuccess(res.data));
   } catch (err) {
     dispatch(getProductFailure());
+  }
+};
+
+export const getOrders = async (dispatch) => {
+  dispatch(getOrderStart());
+  try {
+    const res = await publicRequest.get("/orders");
+    dispatch(getOrderSuccess(res.data));
+  } catch (err) {
+    dispatch(getOrderFailure());
   }
 };
 
