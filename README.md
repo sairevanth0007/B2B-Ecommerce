@@ -1,5 +1,7 @@
 # B2B-Ecommerce
 
+A MERN application where Business owners can register themselves as Buyer(Client) or Seller(Admin) and buy or sell products in bulk. The Sales analytics of all the products are made available to Buyers where they can view the recent number of sales for their intrested product. 
+
 ## Prerequisites 
 1. Node Js
 2. MongoDB URL
